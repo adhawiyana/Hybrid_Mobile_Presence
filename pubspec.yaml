@@ -22,6 +22,9 @@ dependencies:
   device_information: ^0.0.4
   cached_network_image: ^3.2.2
   shimmer: ^2.0.0
+  timeline_tile: ^2.0.0
+  google_fonts: ^3.0.1
+  intl: ^0.17.0
 
 
 dev_dependencies:

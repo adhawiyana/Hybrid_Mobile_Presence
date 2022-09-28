@@ -68,13 +68,13 @@ class PageProfile extends GetView<ControllerProfile>{
                         child: CachedNetworkImage(
                           height: 80,
                           width: 80,
-                          imageUrl: 'http://192.168.1.29:4500/uploads/${controller.controllerGlobalUser.user.value.picture}',
+                          imageUrl: 'http://192.168.1.9:4500/uploads/${controller.controllerGlobalUser.user.value.picture}',
                           progressIndicatorBuilder: (context, url, downloadProgress) => Shimmer.fromColors(
+                              baseColor: Colors.grey[300]!,
+                              highlightColor: Colors.grey[100]!,
                               child: Container(
                                   color: Colors.white
-                              ),
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!
+                              )
                           ),
                           errorWidget: (context, url, error) => Container(
                             width: 80,
@@ -91,7 +91,7 @@ class PageProfile extends GetView<ControllerProfile>{
                     Container(
                       margin: const EdgeInsets.only(top: 5),
                       child: Text(
-                        controller.controllerGlobalUser.user.value.idUser.toString() ?? 'xxxxxxxx',
+                        controller.controllerGlobalUser.user.value.idUser.toString(),
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -144,8 +144,7 @@ class PageProfile extends GetView<ControllerProfile>{
                     ElevatedButton(
                         onPressed: ()=> Get.toNamed(Routes.set_password),
                         style: ElevatedButton.styleFrom(
-                          elevation: 4,
-                          primary: const Color(0xff5C94E8),
+                          elevation: 4, backgroundColor: const Color(0xff5C94E8),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)
                           ),
