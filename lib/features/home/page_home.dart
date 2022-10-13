@@ -12,7 +12,7 @@ class PageHome extends GetView<ControllerHome>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff0f0f0),
+      backgroundColor: const Color(0xfff0f0f0),
       body: Obx(() => RefreshIndicator(
         onRefresh: ()async{
           await Future.delayed(const Duration(seconds: 3));
@@ -25,7 +25,7 @@ class PageHome extends GetView<ControllerHome>{
               Container(
                 width: Get.width,
                 height: Get.height * 0.4,
-                color: Color(0xff6496E6),
+                color: const Color(0xff6496E6),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -34,7 +34,7 @@ class PageHome extends GetView<ControllerHome>{
                       child: Text(
                         'Selamat datang',
                         style: GoogleFonts.nunito(
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 fontSize: 12,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w400
@@ -47,7 +47,7 @@ class PageHome extends GetView<ControllerHome>{
                       child: Text(
                         'Martin Garrix',
                         style: GoogleFonts.nunito(
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold
@@ -55,7 +55,7 @@ class PageHome extends GetView<ControllerHome>{
                         ),
                       ),
                     ),
-                    SizedBox(height: 11),
+                    const SizedBox(height: 11),
                     Image.asset(
                       "assets/icons/desk_icon.png",
                       height: 220,
@@ -73,7 +73,7 @@ class PageHome extends GetView<ControllerHome>{
                       width: Get.width,
                       child: Card(
                         elevation: 5,
-                        margin: EdgeInsets.only(left: 16, right: 16),
+                        margin: const EdgeInsets.only(left: 16, right: 16),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)
                         ),
@@ -90,7 +90,7 @@ class PageHome extends GetView<ControllerHome>{
                                       child: Text(
                                         'Lokasi saat ini',
                                         style: GoogleFonts.nunito(
-                                            textStyle: TextStyle(
+                                            textStyle: const TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold
                                             )
@@ -102,7 +102,7 @@ class PageHome extends GetView<ControllerHome>{
                                       child: Text(
                                         controller.locationSwitch.value == false ? 'Off-site' : 'On-site',
                                         style: GoogleFonts.nunito(
-                                            textStyle: TextStyle(
+                                            textStyle: const TextStyle(
                                                 fontSize: 14
                                             )
                                         ),
@@ -110,7 +110,7 @@ class PageHome extends GetView<ControllerHome>{
                                     ),
                                   ],
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 15),
                                   child: FlutterSwitch(
@@ -121,13 +121,13 @@ class PageHome extends GetView<ControllerHome>{
                                       onToggle: (value)=> controller.locationSwitch(value)
                                   ),
                                 ),
-                                SizedBox(width: 16)
+                                const SizedBox(width: 16)
                               ],
                             ),
                             Visibility(
                               visible: controller.locationSwitch.value == false ? true : false,
                               child: Container(
-                                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                                 decoration: BoxDecoration(
                                     color: Colors.grey.withOpacity(0.2),
                                     borderRadius: BorderRadius.circular(10)
@@ -136,7 +136,7 @@ class PageHome extends GetView<ControllerHome>{
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: '117.123456, -0.123456',
-                                    contentPadding: EdgeInsets.only(left: 16, top: 14),
+                                    contentPadding: const EdgeInsets.only(left: 16, top: 14),
                                     prefixIcon: Icon(CupertinoIcons.location_solid, color: Colors.grey.withOpacity(0.4)),
                                   ),
                                 ),
@@ -146,13 +146,13 @@ class PageHome extends GetView<ControllerHome>{
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     SizedBox(
                       height: 250,
                       width: Get.width,
                       child: Card(
                         elevation: 5,
-                        margin: EdgeInsets.only(left: 16, right: 16),
+                        margin: const EdgeInsets.only(left: 16, right: 16),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)
                         ),
@@ -166,7 +166,7 @@ class PageHome extends GetView<ControllerHome>{
                                   child: Text(
                                     'Selasa, 04 Oktober 2022',
                                     style: GoogleFonts.nunito(
-                                      textStyle: TextStyle(
+                                      textStyle: const TextStyle(
                                           fontSize: 18,
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold
@@ -174,13 +174,13 @@ class PageHome extends GetView<ControllerHome>{
                                     ),
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Padding(
                                   padding: const EdgeInsets.only(right: 16, top: 16),
                                   child: Text(
                                     '09:00',
                                     style: GoogleFonts.nunito(
-                                      textStyle: TextStyle(
+                                      textStyle: const TextStyle(
                                           fontSize: 18,
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold
@@ -190,7 +190,7 @@ class PageHome extends GetView<ControllerHome>{
                                 ),
                               ],
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                               child: TextField(
                                 maxLines: 5,
@@ -200,18 +200,18 @@ class PageHome extends GetView<ControllerHome>{
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                               child: ElevatedButton(
                                   onPressed: (){},
                                   style: ElevatedButton.styleFrom(
                                     elevation: 0,
                                     fixedSize: Size(Get.width, 40),
-                                    backgroundColor: Color(0xff6496E6),
+                                    backgroundColor: const Color(0xff6496E6),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     )
                                   ),
-                                  child: Text('Chck in')
+                                  child: const Text('Chck in')
                               ),
                             ),
                           ],
