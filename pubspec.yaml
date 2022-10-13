@@ -25,6 +25,7 @@ dependencies:
   timeline_tile: ^2.0.0
   google_fonts: ^3.0.1
   intl: ^0.17.0
+  flutter_switch: ^0.3.2
 
 
 dev_dependencies:

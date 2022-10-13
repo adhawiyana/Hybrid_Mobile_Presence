@@ -10,6 +10,7 @@ class ControllerHome extends GetxController{
   ControllerHome({required this.api});
 
   var loading = false.obs;
+  var locationSwitch = true.obs;
 
   var locationSelected = 0.obs;
   var edtAct = TextEditingController();
