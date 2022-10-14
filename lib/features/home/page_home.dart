@@ -45,7 +45,7 @@ class PageHome extends GetView<ControllerHome>{
                     Padding(
                       padding: const EdgeInsets.fromLTRB(25, 3, 0, 0),
                       child: Text(
-                        'Martin Garrix',
+                        controller.controllerGlobalUser.user.value.name ?? 'Username',
                         style: GoogleFonts.nunito(
                             textStyle: const TextStyle(
                                 fontSize: 18,

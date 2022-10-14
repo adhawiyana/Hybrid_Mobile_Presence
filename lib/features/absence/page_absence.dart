@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tester_app/features/absence/controller_absence.dart';
 
 class PageAbsence extends GetView<ControllerAbsence>{
@@ -16,126 +17,225 @@ class PageAbsence extends GetView<ControllerAbsence>{
           await Future.delayed(const Duration(seconds: 3));
         },
         child: SingleChildScrollView(
-          child: Column(
+          child: Stack(
             children: <Widget>[
               Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsets.only(top: 60),
-                child: Text(
-                  'Check Out',
-                  style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.blue.shade500,
-                      fontFamily: 'ComicSans'
-                  ),
-                ),
-              ),
-              Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsets.only(top: 5),
-                child: const Text(
-                  'Selamat jalan, Adha',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Color(0xff575757),
-                      fontWeight: FontWeight.w200
-                  ),
-                ),
-              ),
-              Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsets.only(top: 20),
-                child: Image.asset(
-                  'assets/icons/home_icon.png',
-                  width: Get.width * 0.55,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                child: const Text(
-                  'Terima kasih untuk hari ini! Sebelum anda pergi pastikan anda sudah check out dulu ya',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'ComicSans'
-                  ),
-                ),
-              ),
-              Row(
-                children: <Widget>[
-                  Container(
-                    height: 40,
-                    width: 70,
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.only(left: 39.0.w, top: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: const BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                width: Get.width,
+                height: Get.height * 0.4,
+                color: const Color(0xff6496E6),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(25, 50, 0, 0),
+                      child: Text(
+                        'Selamat beraktivitas',
+                        style: GoogleFonts.nunito(
+                            textStyle: const TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400
+                            )
+                        ),
+                      ),
                     ),
-                    child: const Text('1/1/2022', style: TextStyle(fontSize: 12)),
-                  ),
-                  Container(
-                    height: 40,
-                    width: 70,
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.only(top: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
-                      borderRadius: const BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(25, 3, 0, 0),
+                      child: Text(
+                        'Martin Garrix',
+                        style: GoogleFonts.nunito(
+                            textStyle: const TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold
+                            )
+                        ),
+                      ),
                     ),
-                    child: const Text('09.00', style: TextStyle(fontSize: 12)),
-                  ),
-                  Container(
-                    height: 40,
-                    width: 70,
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.only(top: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade400,
-                      borderRadius: const BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
-                    ),
-                    child: const Text('17.00', style: TextStyle(fontSize: 12)),
-                  ),
-                ],
-              ),
-              Container(
-                height: 150,
-                width: Get.width * 0.8,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade200,
-                  borderRadius: const BorderRadius.only(topRight: Radius.circular(10)),
-                ),
-                padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-                child: const Text(
-                  'Implementasi UI pada flutter Menguji API pada fitur Sign in Membuat dokumentasi pada fitur sign in',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontFamily: "ComicSans",
-                    color: Color(0xff505050),
-                    fontSize: 16,
-                  ),
+                    const SizedBox(height: 11),
+                    Image.asset(
+                      "assets/icons/home_icon.png",
+                      height: 180,
+                      width: Get.width,
+                    )
+                  ],
                 ),
               ),
-              GestureDetector(
-                onTap: (){},
-                child: Container(
-                  height: 50,
-                  width: Get.width * 0.8,
-                  alignment: Alignment.center,
-                  margin: const EdgeInsets.only(bottom: 20),
-                  decoration: BoxDecoration(
-                      color: const Color(0xff5C94E8),
-                      borderRadius: const BorderRadius.only(bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10)),
-                      boxShadow: [
-                        BoxShadow(
-                          offset: const Offset(0, 5),
-                          color: Colors.grey.shade200,
-                        )
-                      ]
-                  ),
-                  child: const Text(
-                    'Check Out',
-                    style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'ComicSans'),
+              Padding(
+                padding: const EdgeInsets.only(top: 275),
+                child: SizedBox(
+                  height: 450,
+                  width: Get.width,
+                  child: Card(
+                    elevation: 5,
+                    margin: const EdgeInsets.only(left: 16, right: 16),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)
+                    ),
+                    color: Colors.white,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          decoration: BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(
+                                    color: Colors.grey.withOpacity(0.3)))
+                          ),
+                          child: Row(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(left: 16, top: 16),
+                                child: Text(
+                                  'Selasa, 04 Oktober 2022',
+                                  style: GoogleFonts.nunito(
+                                      textStyle: const TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold
+                                      )
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 16, top: 16),
+                                child: Text(
+                                  '09:00',
+                                  style: GoogleFonts.nunito(
+                                      textStyle: const TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold
+                                      )
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16, top: 16),
+                          child: Text(
+                            'Lokasi',
+                            style: GoogleFonts.nunito(
+                                textStyle: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold
+                              )
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16),
+                          child: Text(
+                            'On-site',
+                            style: GoogleFonts.nunito(
+                                textStyle: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400
+                              )
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16, top: 16),
+                          child: Text(
+                            'Jam masuk absen',
+                            style: GoogleFonts.nunito(
+                                textStyle: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold
+                                )
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16),
+                          child: Text(
+                            '09:00',
+                            style: GoogleFonts.nunito(
+                                textStyle: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400
+                                )
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16, top: 16),
+                          child: Text(
+                            'Agenda',
+                            style: GoogleFonts.nunito(
+                                textStyle: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold
+                                )
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16),
+                          child: Text(
+                            'Implementasi UI pada flutter, menguji API pada fitur Sign In dan membuat dokumentasi pada fitur Sign In. Selebihnya tinggal menikmati segelas kopi panas dan mendengarkan musik...',
+                            style: GoogleFonts.nunito(
+                                textStyle: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400
+                                )
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                          child: ElevatedButton(
+                              onPressed: (){},
+                              style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  fixedSize: Size(Get.width, 40),
+                                  backgroundColor: Colors.transparent,
+                                  foregroundColor: const Color(0xff6496E6),
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(width: 1, color: Color(0xff6496E6)),
+                                    borderRadius: BorderRadius.circular(10)
+                                  )
+                              ),
+                              child: Text(
+                                  'Edit Agenda',
+                                style: GoogleFonts.nunito(
+                                    textStyle: const TextStyle(
+                                        fontWeight: FontWeight.w300
+                                    )
+                                ),
+                              )
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+                          child: ElevatedButton(
+                              onPressed: (){},
+                              style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  fixedSize: Size(Get.width, 40),
+                                  backgroundColor: const Color(0xff6496E6),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  )
+                              ),
+                              child: Text(
+                                  'Check Out',
+                                style: GoogleFonts.nunito(
+                                    textStyle: const TextStyle(
+                                        fontWeight: FontWeight.w300
+                                    )
+                                ),
+                              )
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               )
