@@ -16,38 +16,34 @@ class PageMain extends GetView<ControllerMain>{
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
           boxShadow: [BoxShadow(
             color: Colors.grey.shade400,
             blurRadius: 4,
           )]
         ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-          child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            fixedColor: Colors.blue.shade300,
-            currentIndex: controller.currentPage.value,
-            onTap: (index)=> controller.changePage(index),
-            items: const [
-              BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.device_desktop),
-                  label: 'Home',
-                  backgroundColor: Color(0xff7D7D7D)),
-              BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.home),
-                  label: 'Absence',
-                  backgroundColor: Color(0xff7D7D7D)),
-              BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.doc),
-                  label: 'Track Record',
-                  backgroundColor: Color(0xff7D7D7D)),
-              BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.person),
-                  label: 'Profle',
-                  backgroundColor: Color(0xff7D7D7D)),
-            ],
-          ),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          fixedColor: Colors.blue.shade300,
+          currentIndex: controller.currentPage.value,
+          onTap: (index)=> controller.changePage(index),
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.device_desktop),
+                label: 'Home',
+                backgroundColor: Color(0xff7D7D7D)),
+            BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.home),
+                label: 'Absence',
+                backgroundColor: Color(0xff7D7D7D)),
+            BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.doc),
+                label: 'Track Record',
+                backgroundColor: Color(0xff7D7D7D)),
+            BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.person),
+                label: 'Profle',
+                backgroundColor: Color(0xff7D7D7D)),
+          ],
         ),
       ),
     ));
