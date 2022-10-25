@@ -68,7 +68,7 @@ class PageProfile extends GetView<ControllerProfile>{
                         child: CachedNetworkImage(
                           height: 80,
                           width: 80,
-                          imageUrl: 'http://192.168.1.9:4500/uploads/${controller.controllerGlobalUser.user.value.picture}',
+                          imageUrl: 'http://192.168.110.233:4500/uploads/${controller.controllerGlobalUser.user.value.picture}',
                           progressIndicatorBuilder: (context, url, downloadProgress) => Shimmer.fromColors(
                               baseColor: Colors.grey[300]!,
                               highlightColor: Colors.grey[100]!,

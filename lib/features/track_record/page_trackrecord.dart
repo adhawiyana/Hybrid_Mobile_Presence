@@ -43,7 +43,7 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                         )
                     ),
                   ),
-                  Row(
+                  Obx(() => Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       GestureDetector(
@@ -100,20 +100,23 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                         ),
                       )
                     ],
-                  ),
+                  )),
                 ]
             ),
           ),
         ),
       ),
-      body: RefreshIndicator(
+      body: Obx(() => RefreshIndicator(
         onRefresh: () async {
           await Future.delayed(const Duration(seconds: 3));
+          controller.trackRecordList.clear();
         },
-        child: Expanded(
+        child: SizedBox(
+            width: Get.width,
+            height: Get.height,
             child: ListView.builder(
-                itemCount: 5,
-                padding: const EdgeInsets.only(left: 30, right: 15),
+                itemCount: controller.trackRecordList.length,
+                padding: const EdgeInsets.only(left: 15, right: 15),
                 itemBuilder: (context, index)=>
                     GestureDetector(
                       onTap: ()=> Get.snackbar(
@@ -125,12 +128,12 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                         margin: EdgeInsets.only(bottom: index == 0 ? 20 : 0),
                         padding: EdgeInsets.only(bottom: index == 0 ? 20 : 5),
                         decoration: index == 0 ? const BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              width: 2,
-                              color: Colors.black38
+                            border: Border(
+                                bottom: BorderSide(
+                                    width: 2,
+                                    color: Colors.black38
+                                )
                             )
-                          )
                         ) : null,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,17 +170,17 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                                         height: 20,
                                         alignment: Alignment.center,
                                         decoration: const BoxDecoration(
-                                          color: Color(0xff6496E6),
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10),
-                                          )
+                                            color: Color(0xff6496E6),
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(10),
+                                              topRight: Radius.circular(10),
+                                            )
                                         ),
                                         child: Text(
-                                            'Oct 2022',
+                                          DateFormat("MMM-yyyy").format(controller.trackRecordList[index].date!),
                                           style: GoogleFonts.nunito(
-                                            color: Colors.white,
-                                            fontSize: 10
+                                              color: Colors.white,
+                                              fontSize: 10
                                           ),
                                         ),
                                       ),
@@ -187,15 +190,15 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                                         height: 45,
                                         alignment: Alignment.center,
                                         decoration: BoxDecoration(
-                                          color: Colors.transparent,
-                                          borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(10),
-                                            bottomRight: Radius.circular(10),
-                                          ),
-                                          border: Border.all(width: 2, color: const Color(0xff6496E6))
+                                            color: Colors.transparent,
+                                            borderRadius: const BorderRadius.only(
+                                              bottomLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10),
+                                            ),
+                                            border: Border.all(width: 2, color: const Color(0xff6496E6))
                                         ),
                                         child: Text(
-                                            '01',
+                                          DateFormat("dd").format(controller.trackRecordList[index].date!.add(const Duration(days: 1))),
                                           style: GoogleFonts.nunito(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
@@ -210,11 +213,11 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
-                                          'Check in pada 09:00',
+                                        'Check in pada 09:00',
                                         style: GoogleFonts.nunito(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 18
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 18
                                         ),
                                       ),
                                       Row(
@@ -225,7 +228,7 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                                             color: Color(0xff6496E6),
                                           ),
                                           Text(
-                                            'On-Site',
+                                            controller.trackRecordList[index].location ?? "Uknown",
                                             style: GoogleFonts.nunito(
                                                 color: Colors.black,
                                                 fontSize: 14
@@ -244,7 +247,7 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                     )
             )
         ),
-      ),
+      )),
     );
   }
 }
