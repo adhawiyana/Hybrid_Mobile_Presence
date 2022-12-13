@@ -22,7 +22,6 @@ class ControllerTrackrecord extends GetxController{
 
   @override
   void onInit() {
-    trackRecord();
     super.onInit();
   }
 

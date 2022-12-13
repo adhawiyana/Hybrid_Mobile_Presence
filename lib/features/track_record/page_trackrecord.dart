@@ -213,7 +213,7 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
-                                        'Check in pada 09:00',
+                                        'Check in pada ' + controller.trackRecordList[index].arrivetime!.substring(0, 5),
                                         style: GoogleFonts.nunito(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
