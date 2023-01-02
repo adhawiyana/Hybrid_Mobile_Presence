@@ -141,9 +141,9 @@ class PageHome extends GetView<ControllerHome>{
                                     ),
                                     child: Row(
                                       children: <Widget>[
-                                        SizedBox(width: 5),
+                                        const SizedBox(width: 5),
                                         Icon(CupertinoIcons.location_solid, color: Colors.grey.withOpacity(0.45)),
-                                        SizedBox(width: 6),
+                                        const SizedBox(width: 6),
                                         Text(
                                           '${controller.liveLat}, ${controller.liveLng}',
                                           style: GoogleFonts.nunito(
@@ -178,7 +178,7 @@ class PageHome extends GetView<ControllerHome>{
                                     Padding(
                                       padding: const EdgeInsets.only(left: 16, top: 16),
                                       child: Text(
-                                        DateFormat("EEEE, dd MMMM yyyy").format(controller.dateTime),
+                                        DateFormat("EE, dd MMMM yyyy").format(controller.dateTime),
                                         style: GoogleFonts.nunito(
                                             textStyle: const TextStyle(
                                                 fontSize: 18,
@@ -210,11 +210,12 @@ class PageHome extends GetView<ControllerHome>{
                                     ),
                                   ],
                                 ),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                                   child: TextField(
+                                    controller: controller.edtAct,
                                     maxLines: 5,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                         hintText: 'Tulis agenda'
                                     ),
                                   ),
@@ -222,7 +223,9 @@ class PageHome extends GetView<ControllerHome>{
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                                   child: ElevatedButton(
-                                      onPressed: (){},
+                                      onPressed: ()=> controller.locationSwitch.value == true
+                                          ? controller.checkin()
+                                          : controller.checkinOffsite(),
                                       style: ElevatedButton.styleFrom(
                                           elevation: 0,
                                           fixedSize: Size(Get.width, 40),

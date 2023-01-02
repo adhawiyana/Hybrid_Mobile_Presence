@@ -1,7 +1,9 @@
 import 'dart:developer' as log;
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:location/location.dart';
 import 'package:tester_app/features/home/api_home.dart';
@@ -90,10 +92,10 @@ class ControllerHome extends GetxController {
     locationService.onLocationChanged.listen((LocationData currentLocation) {
       liveLat.value = currentLocation.latitude!;
       liveLng.value = currentLocation.longitude!;
-      log.log("lat => ${liveLat.value} + lng => ${liveLng.value}");
     });
   }
 
+  //return in Meters
   locationDistance(lat1, lon1, lat2, lon2){
     var p = 0.017453292519943295;
     var c = cos;
@@ -104,7 +106,136 @@ class ControllerHome extends GetxController {
     distance.value = 1000 * 12742 * asin(sqrt(a));
   }
 
-  checkin(String location)async{
+  presencePopUp(){
+    return Get.defaultDialog(
+      titlePadding: const EdgeInsets.all(0),
+        radius: 10,
+        title: "",
+        content: Column(
+          children: <Widget>[
+            const Icon(CupertinoIcons.hand_thumbsup_fill,
+                size: 50, color: Color(0xff6496E6)),
+            const SizedBox(height: 10),
+            Text(
+              "Selamat datang, ${controllerGlobalUser.user.value.name}",
+              style: GoogleFonts.nunito(
+                  textStyle: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold)),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "Absen anda telah masuk, selamat beraktivitas",
+              textAlign: TextAlign.center,
+              style: GoogleFonts.nunito(
+                  textStyle: const TextStyle(
+                    fontSize: 13,
+                    color: Colors.black,
+                  )),
+            ),
+          ],
+        )
+    );
+  }
+
+  absencePopUp(){
+    return Get.defaultDialog(
+      titlePadding: const EdgeInsets.all(0),
+        radius: 10,
+        title: "",
+        content: Column(
+          children: <Widget>[
+            const Icon(Icons.location_off,
+                size: 50, color: Color(0xff6496E6)),
+            const SizedBox(height: 10),
+            Text(
+              "Maaf ${controllerGlobalUser.user.value.name}",
+              style: GoogleFonts.nunito(
+                  textStyle: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold)),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "Jarak anda selisih ${distance.value} M",
+              textAlign: TextAlign.center,
+              style: GoogleFonts.nunito(
+                  textStyle: const TextStyle(
+                    fontSize: 13,
+                    color: Colors.black,
+                  )),
+            ),
+          ],
+        )
+    );
+  }
+
+  alreadyAbsencePopUp(){
+    return Get.defaultDialog(
+      titlePadding: const EdgeInsets.all(0),
+        radius: 10,
+        title: "",
+        content: Column(
+          children: <Widget>[
+            const Icon(Icons.location_off,
+                size: 50, color: Color(0xff6496E6)),
+            const SizedBox(height: 10),
+            Text(
+              "Maaf ${controllerGlobalUser.user.value.name}",
+              style: GoogleFonts.nunito(
+                  textStyle: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold)),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "Anda hanya dapat melakukan check in kehadiran sekali",
+              textAlign: TextAlign.center,
+              style: GoogleFonts.nunito(
+                  textStyle: const TextStyle(
+                    fontSize: 13,
+                    color: Colors.black,
+                  )),
+            ),
+          ],
+        )
+    );
+  }
+
+  checkin()async{
+    date.value = DateFormat("yyyy-MM-dd").format(dateTime);
+    checkinTime.value = DateFormat("HH:mm:ss").format(dateTime);
+    try{
+      locationDistance(lat.value, long.value, liveLat.value, liveLng.value);
+      if(distance.value <= 50.0){
+        var presenceResponse = await api.presence(
+            edtAct.text,
+            date.value,
+            checkinTime.value,
+            "00:00:00",
+            liveLat.value,
+            liveLng.value,
+            locationSwitch.value == true ? "On-site" : "Off-site",
+            controllerGlobalUser.user.value.idUser ?? 0
+        );
+        if(presenceResponse["status"] == 200){
+          presencePopUp();
+        }else{
+          alreadyAbsencePopUp();
+        }
+      }else{
+        absencePopUp();
+      }
+    }catch(e){
+      log.log(e.toString());
+    }
+
+  }
+
+  checkinOffsite()async{
     date.value = DateFormat("yyyy-MM-dd").format(dateTime);
     checkinTime.value = DateFormat("HH:mm:ss").format(dateTime);
     try{
@@ -115,9 +246,17 @@ class ControllerHome extends GetxController {
           "00:00:00",
           liveLat.value,
           liveLng.value,
-          location,
+          locationSwitch.value == true ? "On-site" : "Off-site",
           controllerGlobalUser.user.value.idUser ?? 0
       );
-    }catch(e){}
+      if(presenceResponse["status"] == 200){
+        presencePopUp();
+      }else{
+        alreadyAbsencePopUp();
+      }
+    }catch(e){
+      log.log(e.toString());
+    }
+
   }
 }
