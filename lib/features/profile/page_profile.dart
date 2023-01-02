@@ -28,7 +28,7 @@ class PageProfile extends GetView<ControllerProfile>{
                     height: Get.height * 0.47,
                     width: Get.width,
                     fit: BoxFit.fitWidth,
-                    imageUrl: 'http://192.168.1.14:4500/uploads/${controller.controllerGlobalUser.user.value.picture}',
+                    imageUrl: 'http://192.168.1.9:4500/uploads/${controller.controllerGlobalUser.user.value.picture}',
                     progressIndicatorBuilder: (context, url, downloadProgress) => Shimmer.fromColors(
                         baseColor: Colors.grey[300]!,
                         highlightColor: Colors.grey[100]!,

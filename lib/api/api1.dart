@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:tester_app/api/api2.dart';
 
 class Api1 {
-  String baseUrl = 'http://192.168.1.14:4500/';
+  String baseUrl = 'http://192.168.1.9:4500/';
 
   Future<dynamic> apiJSONGet(String url) async {
     Map<String, String> headers = {
