@@ -1,10 +1,8 @@
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -151,7 +149,7 @@ class PageHome extends GetView<ControllerHome>{
                                           '${controller.liveLat}, ${controller.liveLng}',
                                           style: GoogleFonts.nunito(
                                               textStyle: TextStyle(
-                                                color: Colors.black.withOpacity(0.8)
+                                                  color: Colors.black.withOpacity(0.8)
                                               )
                                           ),
                                         ),

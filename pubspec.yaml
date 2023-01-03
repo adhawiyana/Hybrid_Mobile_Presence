@@ -29,6 +29,8 @@ dependencies:
   location: ^4.4.0
   slide_digital_clock: ^1.0.2
   fluttertoast: ^8.1.2
+  lottie: ^2.1.0
+
 
 
 dev_dependencies:
@@ -45,6 +47,8 @@ flutter:
     - 'assets/images/circle_pattern.png'
     - 'assets/icons/desk_icon.png'
     - 'assets/icons/home_icon.png'
+    - 'assets/lottie/empty_animation.json'
+    - 'assets/lottie/nodata_animation.json'
 
   fonts:
      - family: ComicSans

@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
 import 'package:tester_app/features/absence/controller_absence.dart';
 
@@ -67,7 +68,8 @@ class PageAbsence extends GetView<ControllerAbsence>{
                       ],
                     ),
                   ),
-                  Padding(
+                  controller.currPost.value.isNotEmpty
+                      ? Padding(
                     padding: const EdgeInsets.only(top: 275),
                     child: SizedBox(
                       height: 450,
@@ -248,6 +250,86 @@ class PageAbsence extends GetView<ControllerAbsence>{
                                   )
                               ),
                             ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                      : Padding(
+                    padding: const EdgeInsets.only(top: 275),
+                    child: SizedBox(
+                      height: 450,
+                      width: Get.width,
+                      child: Card(
+                        elevation: 5,
+                        margin: const EdgeInsets.only(left: 16, right: 16),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)
+                        ),
+                        color: Colors.white,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: Colors.grey.withOpacity(0.3)))
+                              ),
+                              child: Row(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 16, top: 16),
+                                    child: Text(
+                                      DateFormat("EE, dd MMMM yyyy").format(DateTime.now()),
+                                      style: GoogleFonts.nunito(
+                                          textStyle: const TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold
+                                          )
+                                      ),
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 16, top: 16),
+                                    child: DigitalClock(
+                                      showSecondsDigit: false,
+                                      is24HourTimeFormat: true,
+                                      areaWidth: 70,
+                                      areaHeight: 25,
+                                      areaDecoration: const BoxDecoration(
+                                          color: Colors.white
+                                      ),
+                                      hourMinuteDigitTextStyle: GoogleFonts.nunito(
+                                          textStyle: const TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold
+                                          )
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Lottie.asset(
+                              "assets/lottie/nodata_animation.json",
+                              height: 350,
+                              width: 350
+                            ),
+                            Text(
+                              "Belum ada kegiatan untuk hari ini",
+                              style: GoogleFonts.nunito(
+                                  textStyle: const TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w300
+                                  )
+                              ),
+                            )
                           ],
                         ),
                       ),
