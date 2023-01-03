@@ -2,6 +2,7 @@ import 'dart:developer' as log;
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -34,6 +35,9 @@ class ControllerHome extends GetxController {
   var controllerGlobalUser = Get.find<ControllerGlobalUser>();
 
   Location locationService = Location();
+
+  final formkeyAct = GlobalKey<FormState>();
+
 
   @override
   void onInit() async {
@@ -202,6 +206,12 @@ class ControllerHome extends GetxController {
             ),
           ],
         )
+    );
+  }
+
+  inputToast(){
+    return Fluttertoast.showToast(
+        msg: 'Pastikan anda tidak lupa dengan kegiatan anda'
     );
   }
 

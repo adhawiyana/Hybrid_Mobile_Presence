@@ -28,6 +28,7 @@ dependencies:
   flutter_switch: ^0.3.2
   location: ^4.4.0
   slide_digital_clock: ^1.0.2
+  fluttertoast: ^8.1.2
 
 
 dev_dependencies:

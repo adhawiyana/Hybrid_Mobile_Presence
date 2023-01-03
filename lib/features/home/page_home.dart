@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -212,20 +215,34 @@ class PageHome extends GetView<ControllerHome>{
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                  child: TextField(
+                                  child: Form(
+                                    key: controller.formkeyAct,
+                                      child: TextFormField(
                                     controller: controller.edtAct,
                                     maxLines: 5,
                                     decoration: const InputDecoration(
                                         hintText: 'Tulis agenda'
                                     ),
+                                    validator: (value)=> value == null || value == ''
+                                        ? controller.inputToast()
+                                        : null,
+                                  )
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                                   child: ElevatedButton(
-                                      onPressed: ()=> controller.locationSwitch.value == true
-                                          ? controller.checkin()
-                                          : controller.checkinOffsite(),
+                                      onPressed: (){
+                                        if(controller.formkeyAct.currentState!.validate()){
+                                          if(controller.locationSwitch(true)){
+                                            controller.checkin();
+                                          }else{
+                                            controller.checkinOffsite();
+                                          }
+                                        }else{
+                                          log('Please check input data');
+                                        }
+                                      },
                                       style: ElevatedButton.styleFrom(
                                           elevation: 0,
                                           fixedSize: Size(Get.width, 40),
