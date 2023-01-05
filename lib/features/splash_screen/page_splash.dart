@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tester_app/features/splash_screen/controller_splash.dart';
 
 class PageSplash extends GetView<ControllerSplash>{
@@ -10,37 +10,39 @@ class PageSplash extends GetView<ControllerSplash>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xfff0f0f0),
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: <Widget>[
           Image.asset(
-            'assets/images/background.png',
-            fit: BoxFit.fitHeight,
+            'assets/images/splash_bg.png',
+            alignment: Alignment.bottomCenter,
             height: Get.height,
           ),
           Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
                 alignment: Alignment.center,
-                margin: const EdgeInsets.only(top: 150),
-                child: const Text(
+                margin: const EdgeInsets.only(top: 70),
+                child: Text(
                   'Mobile presence',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'ComicSans'
+                  style: GoogleFonts.nunitoSans(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white
                   ),
                 ),
               ),
               Container(
                 alignment: Alignment.center,
                 margin: const EdgeInsets.only(top: 5),
-                child: const Text(
+                child: Text(
                   'Every second is count',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w300,
-                    fontFamily: 'ComicSans'
+                  style: GoogleFonts.nunitoSans(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white
                   ),
                 ),
               ),

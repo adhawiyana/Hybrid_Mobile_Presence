@@ -1,9 +1,12 @@
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:slide_digital_clock/slide_digital_clock.dart';
 import 'package:tester_app/features/absence/api_absence.dart';
+import 'package:tester_app/pages/app_routes.dart';
 import 'package:tester_app/shared/controller/controller_global_user.dart';
 
 import '../../response/detail_track.dart';
@@ -33,6 +36,191 @@ class ControllerAbsence extends GetxController{
     edtAct.dispose();
   }
 
+  checkOutPopUp(){
+    return Get.defaultDialog(
+      title: '',
+      radius: 12,
+      titlePadding: const EdgeInsets.all(0),
+      contentPadding: const EdgeInsets.only(left: 10, right: 10),
+      content: Column(
+        children: <Widget>[
+          Text(
+            "Yakin ingin Check-Out?",
+            style: GoogleFonts.nunitoSans(
+              fontSize: 20,
+              fontWeight: FontWeight.w800
+            ),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            "Pastikan semua pekerjaan anda sudah selesai",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.nunitoSans(
+              fontSize: 14,
+              fontWeight: FontWeight.w300
+            ),
+          ),
+          const SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                DateFormat("EE, dd MMMM yyyy").format(DateTime.now()),
+                style: GoogleFonts.nunito(
+                    textStyle: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold
+                    )
+                ),
+              ),
+              DigitalClock(
+                showSecondsDigit: false,
+                is24HourTimeFormat: true,
+                areaWidth: 70,
+                areaHeight: 25,
+                areaDecoration: const BoxDecoration(
+                    color: Colors.white
+                ),
+                hourMinuteDigitTextStyle: GoogleFonts.nunito(
+                    textStyle: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold
+                    )
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Container(
+            decoration: const BoxDecoration(
+              border: Border(
+                top: BorderSide(
+                  color: Colors.black26,
+                  width: 1
+                )
+              )
+            ),
+            padding: const EdgeInsets.only(top: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                ElevatedButton(
+                    onPressed: ()=> Get.toNamed(Routes.absence_success),
+                    style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        fixedSize: Size(Get.width * 0.35, 40),
+                        backgroundColor: const Color(0xff6496E6),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        )
+                    ),
+                    child: Text(
+                      'Ya',
+                      style: GoogleFonts.nunito(
+                          textStyle: const TextStyle(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 16
+                          )
+                      ),
+                    )
+                ),
+                ElevatedButton(
+                    onPressed: (){},
+                    style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        fixedSize: Size(Get.width * 0.35, 40),
+                        backgroundColor: Colors.transparent,
+                        foregroundColor: const Color(0xff6496E6),
+                        shape: RoundedRectangleBorder(
+                            side: const BorderSide(width: 1, color: Color(0xff6496E6)),
+                            borderRadius: BorderRadius.circular(10)
+                        )
+                    ),
+                    child: Text(
+                      'Tidak',
+                      style: GoogleFonts.nunito(
+                          textStyle: const TextStyle(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 16
+                          )
+                      ),
+                    )
+                ),
+              ],
+            ),
+          ),
+        ],
+      )
+    );
+  }
+
+  inputPopUp(){
+    return Get.defaultDialog(
+      title: '',
+      radius: 12,
+      titlePadding: const EdgeInsets.all(0),
+      contentPadding: const EdgeInsets.only(left: 10, right: 10),
+      content: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                "Edit Agenda",
+                style: GoogleFonts.nunito(
+                    textStyle: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold
+                    )
+                ),
+              ),
+              IconButton(
+                  onPressed: ()=> Get.back(),
+                  icon: const Icon(
+                      CupertinoIcons.xmark,
+                      color: Colors.black
+                  )
+              ),
+            ],
+          ),
+          TextField(
+            controller: edtAct,
+            maxLines: 6,
+            decoration: const InputDecoration(
+              hintText: "Masukan kegiatan baru anda",
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 16, 0, 10),
+            child: ElevatedButton(
+                onPressed: (){},
+                style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    fixedSize: Size(Get.width, 40),
+                    backgroundColor: const Color(0xff6496E6),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    )
+                ),
+                child: Text(
+                  'Selesai',
+                  style: GoogleFonts.nunito(
+                      textStyle: const TextStyle(
+                          fontWeight: FontWeight.w800,
+                        fontSize: 18
+                      )
+                  ),
+                )
+            ),
+          )
+        ],
+      )
+    );
+  }
+
   currentPresence()async{
     try{
       loading(true);
@@ -47,7 +235,6 @@ class ControllerAbsence extends GetxController{
         currrTimeArr.value = responseKeeper.arrivetime ?? "--:--";
         currPost.value = responseKeeper.post ?? "-";
       }
-      log(currrTimeArr.value);
       loading(false);
     }catch(e){
       loading(false);

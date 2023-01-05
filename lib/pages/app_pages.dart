@@ -11,6 +11,9 @@ import 'package:tester_app/features/track_record/binding_trackrecord.dart';
 import 'package:tester_app/features/track_record/detail/detail_trackrecord.dart';
 import 'package:tester_app/pages/app_routes.dart';
 
+import '../features/absence_success/binding_absencesuccess.dart';
+import '../features/absence_success/page_absencesuccess.dart';
+
 class AppPages{
   static final pages = [
     GetPage(
@@ -37,6 +40,11 @@ class AppPages{
       name: Routes.detail_track_record,
       page: () => const PageDetailtrackrecord(),
       binding: BindingTrackrecord(),
+    ),
+    GetPage(
+      name: Routes.absence_success,
+      page: () => const PageAbsenceSuccess(),
+      binding: BindingAbsenceSuccess(),
     ),
   ];
 }

@@ -44,6 +44,7 @@ flutter:
   assets:
     - 'assets/images/background.png'
     - 'assets/images/background_login.png'
+    - 'assets/images/splash_bg.png'
     - 'assets/images/circle_pattern.png'
     - 'assets/icons/desk_icon.png'
     - 'assets/icons/home_icon.png'

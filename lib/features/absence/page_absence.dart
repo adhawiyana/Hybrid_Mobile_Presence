@@ -1,5 +1,5 @@
-import 'dart:developer';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
@@ -132,7 +132,7 @@ class PageAbsence extends GetView<ControllerAbsence>{
                             Padding(
                               padding: const EdgeInsets.only(left: 16, top: 16),
                               child: Text(
-                                "Location",
+                                "Lokasi",
                                 style: GoogleFonts.nunito(
                                     textStyle: const TextStyle(
                                         fontSize: 18,
@@ -205,7 +205,7 @@ class PageAbsence extends GetView<ControllerAbsence>{
                             Padding(
                               padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                               child: ElevatedButton(
-                                  onPressed: (){},
+                                  onPressed: ()=> controller.inputPopUp(),
                                   style: ElevatedButton.styleFrom(
                                       elevation: 0,
                                       fixedSize: Size(Get.width, 40),
@@ -229,9 +229,7 @@ class PageAbsence extends GetView<ControllerAbsence>{
                             Padding(
                               padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
                               child: ElevatedButton(
-                                  onPressed: (){
-                                    log(controller.currPost.value);
-                                  },
+                                  onPressed: ()=> controller.checkOutPopUp(),
                                   style: ElevatedButton.styleFrom(
                                       elevation: 0,
                                       fixedSize: Size(Get.width, 40),
@@ -320,14 +318,29 @@ class PageAbsence extends GetView<ControllerAbsence>{
                               height: 350,
                               width: 350
                             ),
-                            Text(
-                              "Belum ada kegiatan untuk hari ini",
-                              style: GoogleFonts.nunito(
-                                  textStyle: const TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w300
-                                  )
+                            Center(
+                              child: RichText(
+                                textAlign: TextAlign.center,
+                                text: TextSpan(
+                                    text: 'Sudah check in? Yuk, cek',
+                                    style: GoogleFonts.nunitoSans(
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 20,
+                                        color: Colors.black45
+                                    ),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                        text: ' di sini',
+                                        style: GoogleFonts.nunitoSans(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 20,
+                                            color: Color(0xff6496E6)
+                                        ),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () => controller.currentPresence(),
+                                      )
+                                    ]
+                                ),
                               ),
                             )
                           ],
