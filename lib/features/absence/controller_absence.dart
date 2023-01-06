@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -107,7 +108,10 @@ class ControllerAbsence extends GetxController{
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 ElevatedButton(
-                    onPressed: ()=> Get.toNamed(Routes.absence_success),
+                    onPressed: (){
+                      checkingOut();
+                      Get.back();
+                    },
                     style: ElevatedButton.styleFrom(
                         elevation: 0,
                         fixedSize: Size(Get.width * 0.35, 40),
@@ -127,7 +131,7 @@ class ControllerAbsence extends GetxController{
                     )
                 ),
                 ElevatedButton(
-                    onPressed: (){},
+                    onPressed: ()=> Get.back(),
                     style: ElevatedButton.styleFrom(
                         elevation: 0,
                         fixedSize: Size(Get.width * 0.35, 40),
@@ -196,7 +200,10 @@ class ControllerAbsence extends GetxController{
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 16, 0, 10),
             child: ElevatedButton(
-                onPressed: (){},
+                onPressed: (){
+                  editingPost();
+                  Get.back();
+                },
                 style: ElevatedButton.styleFrom(
                     elevation: 0,
                     fixedSize: Size(Get.width, 40),
@@ -234,6 +241,44 @@ class ControllerAbsence extends GetxController{
         currLocation.value = responseKeeper.location ?? "-";
         currrTimeArr.value = responseKeeper.arrivetime ?? "--:--";
         currPost.value = responseKeeper.post ?? "-";
+      }
+      loading(false);
+    }catch(e){
+      loading(false);
+      log(e.toString());
+      Fluttertoast.showToast(msg: "Ada masih belum melakukan Check-In hari ini");
+    }
+  }
+
+  checkingOut()async{
+    try{
+      loading(true);
+      var checkingOutResponse = await api.checkOut(
+          leavingtime: DateFormat("HH:mm:ss").format(DateTime.now()),
+          date: DateFormat("yyyy-MM-dd").format(DateTime.now()),
+          id_user: controllerGlobalUser.user.value.idUser ?? 0
+      );
+      if(checkingOutResponse != null){
+        Fluttertoast.showToast(msg: checkingOutResponse["Message"]);
+        Get.toNamed(Routes.absence_success);
+      }
+      loading(false);
+    }catch(e){
+      loading(false);
+      log(e.toString());
+    }
+  }
+
+  editingPost()async{
+    try{
+      loading(true);
+      var editingPostResponse = await api.editPost(
+          date: DateFormat("yyyy-MM-dd").format(DateTime.now()),
+          post: edtAct.text,
+          id_user: controllerGlobalUser.user.value.idUser ?? 0
+      );
+      if(editingPostResponse != null){
+        Fluttertoast.showToast(msg: editingPostResponse["Message"]);
       }
       loading(false);
     }catch(e){

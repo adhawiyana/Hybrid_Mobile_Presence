@@ -3,6 +3,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:device_information/device_information.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:tester_app/api/api2.dart';
 import 'package:tester_app/features/login/api_login.dart';
@@ -71,10 +72,13 @@ class ControllerLogin extends GetxController{
         await Api2().setToken(token: userToken);
         await Api2().setIsLogin(isLogin: true);
         Get.offNamed(Routes.main);
+      }else{
+        Fluttertoast.showToast(msg: "Akun tidak ditemukan");
       }
       loading(false);
     }catch(e){
       loading(false);
+      Fluttertoast.showToast(msg: "Ada yang salah");
       log(e.toString());
     }
   }

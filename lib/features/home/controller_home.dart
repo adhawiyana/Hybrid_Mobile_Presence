@@ -228,7 +228,7 @@ class ControllerHome extends GetxController {
             "00:00:00",
             liveLat.value,
             liveLng.value,
-            locationSwitch.value == true ? "On-site" : "Off-site",
+            "On-site",
             controllerGlobalUser.user.value.idUser ?? 0
         );
         if(presenceResponse["status"] == 200){
@@ -256,7 +256,7 @@ class ControllerHome extends GetxController {
           "00:00:00",
           liveLat.value,
           liveLng.value,
-          locationSwitch.value == true ? "On-site" : "Off-site",
+          "Off-site",
           controllerGlobalUser.user.value.idUser ?? 0
       );
       if(presenceResponse["status"] == 200){

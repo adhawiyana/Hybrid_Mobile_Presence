@@ -4,7 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:tester_app/api/api2.dart';
 
 class Api1 {
-  String baseUrl = 'http://192.168.1.9:4500/';
+  String baseUrl = 'http://192.168.1.21:4500/';
+
 
   Future<dynamic> apiJSONGet(String url) async {
     Map<String, String> headers = {
@@ -82,6 +83,26 @@ class Api1 {
     return data;
   }
 
+  Future<dynamic> apiJSONPutWithToken(String url, Map<String, dynamic> params) async {
+    var token = await Api2().getToken();
 
+    Map<String, String> headers = {
+      'content-Type': 'application/json',
+      'accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
+    log('headers = ' + headers.toString());
+    log('url = $baseUrl' + url);
 
+    var r = await http.put(Uri.parse(baseUrl + url),
+        headers: headers,
+        body: jsonEncode(params),
+        encoding: Encoding.getByName("utf-8"));
+    var data = jsonDecode(r.body);
+    log("status codenya " + r.statusCode.toString());
+
+    // log(data.toString());
+    // logApi(url: url, res:  r, method: "POST", payload: params);
+    return data;
+  }
 }

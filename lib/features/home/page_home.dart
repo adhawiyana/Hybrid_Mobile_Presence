@@ -232,11 +232,9 @@ class PageHome extends GetView<ControllerHome>{
                                   child: ElevatedButton(
                                       onPressed: (){
                                         if(controller.formkeyAct.currentState!.validate()){
-                                          if(controller.locationSwitch(true)){
-                                            controller.checkin();
-                                          }else{
-                                            controller.checkinOffsite();
-                                          }
+                                          controller.locationSwitch.value == true
+                                              ? controller.checkin()
+                                              : controller.checkinOffsite();
                                         }else{
                                           log('Please check input data');
                                         }
