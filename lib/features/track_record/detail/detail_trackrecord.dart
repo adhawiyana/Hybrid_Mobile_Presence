@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tester_app/features/track_record/controller_trackrecord.dart';
 
 class PageDetailtrackrecord extends GetView<ControllerTrackrecord>{
@@ -11,147 +11,182 @@ class PageDetailtrackrecord extends GetView<ControllerTrackrecord>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: <Widget>[
-          Image.asset(
-            'assets/images/circle_pattern.png',
-            alignment: Alignment.bottomCenter,
-            height: Get.height,
-          ),
-          SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin: const EdgeInsets.only(top: 60, left: 20),
-                  child: Text(
-                    'Daily Record',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.blue.shade500,
-                        fontFamily: 'ComicSans'
-                    ),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin: const EdgeInsets.only(top: 5, left: 20),
-                  child: const Text(
-                    'Lupa sama kerjaan kemarin? Cek disini!',
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Color(0xff575757),
-                        fontWeight: FontWeight.w200
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(25, 30, 25, 0),
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  decoration: const BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(
-                              color: Color(0xffACACAC)
-                          )
-                      )
-                  ),
-                  child: Row(
-                    children: <Widget>[
-                      const Icon(Icons.date_range, size: 50, color: Color(0xffADADAD)),
-                      const SizedBox(width: 5),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const <Widget>[
-                          Text(
-                            '01/01/2022',
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, fontFamily: 'ComicSans'),
-                          ),
-                          Text(
-                            '08:00-16:00',
-                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18, fontFamily: 'ComicSans'),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(25, 5, 25, 10),
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  decoration: const BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(
-                              color: Color(0xffACACAC)
-                          )
-                      )
-                  ),
-                  child: Row(
-                    children: <Widget>[
-                      const Icon(CupertinoIcons.location_solid, size: 50, color: Color(0xffADADAD)),
-                      const SizedBox(width: 5),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const <Widget>[
-                          Text(
-                            'Onsite',
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, fontFamily: 'ComicSans'),
-                          ),
-                          Text(
-                            '117.123456, -0.123456',
-                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18, fontFamily: 'ComicSans'),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin: const EdgeInsets.fromLTRB(25, 10, 25, 10),
-                  child: const Text(
-                    'Today Task',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, fontFamily: 'ComicSans'),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  margin: const EdgeInsets.fromLTRB(25, 10, 25, 10),
-                  child: TextField(
-                    maxLines: 5,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10)
-                        )
-                    ),
-                    style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 16, fontFamily: 'ComicSans'),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 10),
-                  child: ElevatedButton(
-                      onPressed: (){},
-                      style: ElevatedButton.styleFrom(
-                        elevation: 4,
-                        primary: const Color(0xff5C94E8),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)
-                        ),
-                        fixedSize: Size(Get.width * 0.8.w, 50),
-                      ),
-                      child: const Text(
-                        'Edit Activity',
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: 'ComicSans'
-                        ),
-                      )
-                  ),
+      backgroundColor: const Color(0xff6496E6),
+      body: Center(
+        child: Container(
+          height: Get.height * 0.65,
+          width: Get.width * 0.85,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 15,
                 )
-              ],
-            ),
-          )
-        ],
+              ]
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.only(top: 16, bottom: 5),
+                child: Center(
+                  child: Icon(
+                    CupertinoIcons.text_bubble,
+                    size: 65,
+                    color: Color(0xff6496E6),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Center(
+                  child: Text(
+                    "Detail kegiatan anda.",
+                    style: GoogleFonts.nunitoSans(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(bottom: 18, left: 16, right: 16),
+                decoration: const BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(
+                            color: Colors.black26,
+                            width: 1
+                        )
+                    )
+                ),
+                child: Text(
+                  textAlign: TextAlign.center,
+                  "Berikut adalah detail pekerjaan anda\nJika ada kesalahan silahkan diperbaiki atau hubungi admin pada kantor anda",
+                  style: GoogleFonts.nunitoSans(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16, top: 16),
+                child: Text(
+                  "Lokasi",
+                  style: GoogleFonts.nunito(
+                      textStyle: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold
+                      )
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text(
+                  controller.detail.value.location ?? "Unknown",
+                  style: GoogleFonts.nunito(
+                      textStyle: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400
+                      )
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16, top: 20),
+                        child: Text(
+                          "Check-In",
+                          style: GoogleFonts.nunito(
+                              textStyle: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold
+                              )
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16),
+                        child: Text(
+                          controller.detail.value.arrivetime ?? "--:--",
+                          style: GoogleFonts.nunito(
+                              textStyle: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400
+                              )
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 50),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16, top: 20),
+                        child: Text(
+                          "Check-Out",
+                          style: GoogleFonts.nunito(
+                              textStyle: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold
+                              )
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16),
+                        child: Text(
+                          controller.detail.value.leavingtime ?? "--:--",
+                          style: GoogleFonts.nunito(
+                              textStyle: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400
+                              )
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16, top: 16),
+                child: Text(
+                  "Agenda",
+                  style: GoogleFonts.nunito(
+                      textStyle: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold
+                      )
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16, right: 16),
+                child: Text(
+                  controller.detail.value.post ?? "-",
+                  maxLines: 7,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.nunito(
+                      textStyle: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400
+                      )
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

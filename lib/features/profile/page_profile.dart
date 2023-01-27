@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:tester_app/features/profile/controller_profile.dart';
 
+import '../../pages/app_routes.dart';
+
 class PageProfile extends GetView<ControllerProfile>{
   const PageProfile({Key? key}) : super(key: key);
 
@@ -32,7 +34,7 @@ class PageProfile extends GetView<ControllerProfile>{
                         height: Get.height * 0.47,
                         width: Get.width,
                         fit: BoxFit.fitWidth,
-                        imageUrl: 'http://192.168.1.13:4500/uploads/${controller.controllerGlobalUser.user.value.picture}',
+                        imageUrl: 'http://192.168.1.12:4500/uploads/${controller.controllerGlobalUser.user.value.picture}',
                         progressIndicatorBuilder: (context, url, downloadProgress) => Shimmer.fromColors(
                             baseColor: Colors.grey[300]!,
                             highlightColor: Colors.grey[100]!,
@@ -66,6 +68,18 @@ class PageProfile extends GetView<ControllerProfile>{
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
+                            const SizedBox(height: 20),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 310),
+                              child: IconButton(
+                                  onPressed: ()=> Get.toNamed(Routes.set_password),
+                                  icon: const Icon(
+                                    CupertinoIcons.pencil,
+                                    color: Colors.white,
+                                    size: 40
+                                  )),
+                            ),
+                            const Spacer(),
                             Text(
                               controller.controllerGlobalUser.user.value.idUser.toString(),
                               style: GoogleFonts.nunitoSans(

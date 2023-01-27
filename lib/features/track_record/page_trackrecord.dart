@@ -104,7 +104,7 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
               await Future.delayed(const Duration(seconds: 3));
               controller.trackRecordList.clear();
             },
-            child: controller.trackRecordList.length != 0
+            child: controller.trackRecordList.isNotEmpty
                 ? SizedBox(
                     width: Get.width,
                     height: Get.height,
@@ -112,9 +112,7 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                         itemCount: controller.trackRecordList.length,
                         padding: const EdgeInsets.only(left: 15, right: 15),
                         itemBuilder: (context, index) => GestureDetector(
-                              onTap: () => Get.snackbar(
-                                  'Mobile Presence', 'This is just sample',
-                                  snackPosition: SnackPosition.BOTTOM),
+                              onTap: () => controller.detailResponse(controller.trackRecordList[index].date!.add(Duration(days: 1))),
                               child: Container(
                                 margin: EdgeInsets.only(
                                     bottom: index == 0 ? 20 : 0),
@@ -162,51 +160,33 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                                                 alignment: Alignment.center,
                                                 decoration: const BoxDecoration(
                                                     color: Color(0xff6496E6),
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(10),
-                                                      topRight:
-                                                          Radius.circular(10),
+                                                    borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(10),
+                                                      topRight: Radius.circular(10),
                                                     )),
                                                 child: Text(
-                                                  DateFormat("MMM-yyyy").format(
-                                                      controller
-                                                          .trackRecordList[
-                                                              index]
-                                                          .date!),
+                                                  DateFormat("MMM yyyy").format(
+                                                      controller.trackRecordList[index].date!),
                                                   style: GoogleFonts.nunito(
                                                       color: Colors.white,
                                                       fontSize: 10),
                                                 ),
                                               ),
                                               Container(
-                                                margin: const EdgeInsets.only(
-                                                    left: 16, bottom: 16),
+                                                margin: const EdgeInsets.only(left: 16, bottom: 16),
                                                 width: 70,
                                                 height: 45,
                                                 alignment: Alignment.center,
                                                 decoration: BoxDecoration(
                                                     color: Colors.transparent,
-                                                    borderRadius:
-                                                        const BorderRadius.only(
-                                                      bottomLeft:
-                                                          Radius.circular(10),
-                                                      bottomRight:
-                                                          Radius.circular(10),
+                                                    borderRadius: const BorderRadius.only(
+                                                      bottomLeft: Radius.circular(10),
+                                                      bottomRight: Radius.circular(10),
                                                     ),
-                                                    border: Border.all(
-                                                        width: 2,
-                                                        color: const Color(
-                                                            0xff6496E6))),
+                                                    border: Border.all(width: 2, color: const Color(0xff6496E6))),
                                                 child: Text(
                                                   DateFormat("dd").format(
-                                                      controller
-                                                          .trackRecordList[
-                                                              index]
-                                                          .date!
-                                                          .add(const Duration(
-                                                              days: 1))),
+                                                      controller.trackRecordList[index].date!.add(const Duration(days: 1))),
                                                   style: GoogleFonts.nunito(
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.black,
@@ -218,15 +198,10 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                                           ),
                                           const SizedBox(width: 15),
                                           Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: <Widget>[
                                               Text(
-                                                'Check in pada ' +
-                                                    controller
-                                                        .trackRecordList[index]
-                                                        .arrivetime!
-                                                        .substring(0, 5),
+                                                'Check in pada ${controller.trackRecordList[index].arrivetime!.substring(0, 5)}',
                                                 style: GoogleFonts.nunito(
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.black,
@@ -240,11 +215,7 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                                                     color: Color(0xff6496E6),
                                                   ),
                                                   Text(
-                                                    controller
-                                                            .trackRecordList[
-                                                                index]
-                                                            .location ??
-                                                        "Uknown",
+                                                    controller.trackRecordList[index].location ?? "Uknown",
                                                     style: GoogleFonts.nunito(
                                                         color: Colors.black,
                                                         fontSize: 14),

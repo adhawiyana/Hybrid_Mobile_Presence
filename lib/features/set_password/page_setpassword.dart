@@ -1,10 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tester_app/features/set_password/controller_setpassword.dart';
 
 class PageSetpassword extends GetView<ControllerSetpassword>{
@@ -13,176 +12,125 @@ class PageSetpassword extends GetView<ControllerSetpassword>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: const Color(0xff5C94E8),
-        title: const Text(
-          'Password Change',
-          style: TextStyle(
-              fontSize: 30,
-              color: Colors.white,
-              fontFamily: 'ComicSans'
-          ),
-        ),
-      ),
       backgroundColor: const Color(0xff5C94E8),
-      body: SingleChildScrollView(
-        child: Form(
+      body: Center(
+        child: Container(
+          width: Get.width * 0.85,
+          height: Get.height *.4,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20)
+          ),
+          child: Obx(() => Form(
             key: controller.formkeySetpass,
             child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(top: 10),
-              child: const Text(
-                'Lupa sama sandi mu? Yuk amankan akun mu!',
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.white,
-                    fontFamily: 'ComicSans'
-                ),
-              ),
-            ),
-            Container(
-              width: Get.width,
-              height: Get.height,
-              margin: const EdgeInsets.only(top: 30),
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  )
-              ),
-              child: Column(
-                children: <Widget>[
-              Container(
-              margin: const EdgeInsets.only(top: 30),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: CachedNetworkImage(
-                  height: 80,
-                  width: 80,
-                  imageUrl: 'http://192.168.1.13:4500/uploads/${controller.controllerGlobalUser.user.value.picture}',
-                  progressIndicatorBuilder: (context, url, downloadProgress) => Shimmer.fromColors(
-                      baseColor: Colors.grey[300]!,
-                      highlightColor: Colors.grey[100]!,
-                      child: Container(
-                          color: Colors.white
-                      )
-                  ),
-                  errorWidget: (context, url, error) => Container(
-                    width: 80,
-                    height: 80,
-                    decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        shape: BoxShape.circle
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    "Set Password",
+                    style: GoogleFonts.nunitoSans(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700
                     ),
-                    child: const Icon(CupertinoIcons.person, color: Colors.white, size: 60),
                   ),
                 ),
-              ),
-            ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 5),
-                    child: Text(
-                      controller.controllerGlobalUser.user.value.idUser.toString(),
-                      style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'ComicSans'
-                      ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 3),
+                  child: Text(
+                    "Please input your new password",
+                    style: GoogleFonts.nunitoSans(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400
                     ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 15),
-                    child: Text(
-                      controller.controllerGlobalUser.user.value.name ?? 'Username',
-                      style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'ComicSans'
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 5),
-                    child: TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          label: const Text('Current Password'),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)
-                          )
-                      ),
-                      validator: (value){
-                        if(value!.isEmpty || value.length < 6){
-                          return 'Please input the password';
-                        }else{
-                          return null;
-                        }
-                      },
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 5),
-                    child: TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          label: const Text('New Password'),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)
-                          )
-                      ),
-                      validator: (value){
-                        if(value!.isEmpty || value.length < 6){
-                          return 'Please input the password';
-                        }else{
-                          return null;
-                        }
-                      },
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 20),
-                    child: ElevatedButton(
-                        onPressed: ()=> controller.validator(),
-                        style: ElevatedButton.styleFrom(
-                          elevation: 4,
-                          backgroundColor: const Color(0xff5C94E8),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                          fixedSize: Size(Get.width * 0.8.w, 40),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
+                  child: TextFormField(
+                    obscureText: controller.showPass.value,
+                    controller: controller.edtcurrPassword,
+                    decoration: InputDecoration(
+                      hintText: 'Current Password',
+                      suffixIcon: IconButton(
+                          onPressed: ()=> controller.showPass.value == true
+                              ? controller.showPass.value = false
+                              : controller.showPass.value = true,
+                          icon: Icon(CupertinoIcons.eye_fill)),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          color: Color(0xff5C94E8),
+                          width: 1,
                         ),
-                        child: const Text(
-                          'Set Password',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontFamily: 'ComicSans'
-                          ),
-                        )
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 5),
-                    child: const Text(
-                      'Ingin akun aman? Mari ubah sandi anda!',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w300,
-                          fontFamily: 'ComicSans'
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                              color: Color(0xff5C94E8),
+                              width: 1
+                          )
                       ),
                     ),
+                    validator: (value) {
+                      value!.isEmpty || value.length < 8
+                          ? Fluttertoast.showToast(msg: 'Current password still empty')
+                          : null;
+                    },
                   ),
-                ],
-              ),
-            )
-          ],
-        )
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
+                  child: TextFormField(
+                    obscureText: controller.showConfirmPass.value,
+                    controller: controller.edtNewPassword,
+                    decoration: InputDecoration(
+                      hintText: 'New Password',
+                      suffixIcon: IconButton(
+                          onPressed: ()=> controller.showConfirmPass.value == true
+                              ? controller.showConfirmPass.value = false
+                              : controller.showConfirmPass.value = true,
+                          icon: Icon(CupertinoIcons.eye_fill)),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          color: Color(0xff5C94E8),
+                          width: 1,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                              color: Color(0xff5C94E8),
+                              width: 1
+                          )
+                      ),
+                    ),
+                    validator: (value) {
+                      value!.isEmpty || value.length < 8
+                          ? Fluttertoast.showToast(msg: 'New password still empty')
+                          : null;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 20),
+                  child: ElevatedButton(
+                      onPressed: ()=> controller.validator(),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          fixedSize: Size(Get.width, 40),
+                          backgroundColor: const Color(0xff6496E6),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          )
+                      ),
+                      child: const Text('Save')
+                  ),
+                )
+              ],
+            ),
+          )),
         ),
       ),
     );

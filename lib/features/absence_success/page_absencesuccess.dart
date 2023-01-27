@@ -11,19 +11,19 @@ class PageAbsenceSuccess extends GetView<ControllerAbsenceSuccess>{
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xff6496E6),
-      body: Center(
+      body: Obx(() => Center(
         child: Container(
           height: Get.height * 0.65,
           width: Get.width * 0.85,
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 15,
-              )
-            ]
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 15,
+                )
+              ]
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,12 +53,12 @@ class PageAbsenceSuccess extends GetView<ControllerAbsenceSuccess>{
               Container(
                 padding: const EdgeInsets.only(bottom: 18),
                 decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Colors.black26,
-                      width: 1
+                    border: Border(
+                        bottom: BorderSide(
+                            color: Colors.black26,
+                            width: 1
+                        )
                     )
-                  )
                 ),
                 child: Text(
                   textAlign: TextAlign.center,
@@ -84,7 +84,7 @@ class PageAbsenceSuccess extends GetView<ControllerAbsenceSuccess>{
               Padding(
                 padding: const EdgeInsets.only(left: 16),
                 child: Text(
-                  "On-Site",
+                  controller.detail.value.location ?? "",
                   style: GoogleFonts.nunito(
                       textStyle: const TextStyle(
                           fontSize: 14,
@@ -114,7 +114,7 @@ class PageAbsenceSuccess extends GetView<ControllerAbsenceSuccess>{
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
                         child: Text(
-                          "09:00",
+                          controller.detail.value.arrivetime ?? "--:--",
                           style: GoogleFonts.nunito(
                               textStyle: const TextStyle(
                                   fontSize: 14,
@@ -144,7 +144,7 @@ class PageAbsenceSuccess extends GetView<ControllerAbsenceSuccess>{
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
                         child: Text(
-                          "18:00",
+                          controller.detail.value.leavingtime ?? "--:--",
                           style: GoogleFonts.nunito(
                               textStyle: const TextStyle(
                                   fontSize: 14,
@@ -172,7 +172,7 @@ class PageAbsenceSuccess extends GetView<ControllerAbsenceSuccess>{
               Padding(
                 padding: const EdgeInsets.only(left: 16),
                 child: Text(
-                  "Implementasi UI pada flutter, menguji API pada fitur Sign In dan membuat dokumentasi pada fitur Sign In. Selebihnya tinggal menikmati segelas kopi panas dan mendengarkan musik...",
+                  controller.detail.value.post ?? "-",
                   style: GoogleFonts.nunito(
                       textStyle: const TextStyle(
                           fontSize: 14,
@@ -184,7 +184,7 @@ class PageAbsenceSuccess extends GetView<ControllerAbsenceSuccess>{
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 20, 16, 10),
                 child: ElevatedButton(
-                    onPressed: (){},
+                    onPressed: ()=> Get.back(),
                     style: ElevatedButton.styleFrom(
                         elevation: 0,
                         fixedSize: Size(Get.width, 40),
@@ -207,7 +207,7 @@ class PageAbsenceSuccess extends GetView<ControllerAbsenceSuccess>{
             ],
           ),
         ),
-      ),
+      )),
     );
   }
 }

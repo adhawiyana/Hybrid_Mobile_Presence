@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:tester_app/features/set_password/api_setpassword.dart';
@@ -13,6 +12,9 @@ class ControllerSetpassword extends GetxController{
 
   var edtcurrPassword = TextEditingController();
   var edtNewPassword = TextEditingController();
+
+  var showPass = true.obs;
+  var showConfirmPass = true.obs;
 
   ControllerGlobalUser controllerGlobalUser = Get.find<ControllerGlobalUser>();
 
@@ -30,7 +32,6 @@ class ControllerSetpassword extends GetxController{
 
   validator()async{
     if(formkeySetpass.currentState!.validate()){
-      Get.back();
       log('Success!');
     }else{
       log('Please check input data');

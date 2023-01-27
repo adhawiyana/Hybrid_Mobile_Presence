@@ -279,6 +279,7 @@ class ControllerAbsence extends GetxController{
       );
       if(editingPostResponse != null){
         Fluttertoast.showToast(msg: editingPostResponse["Message"]);
+        Get.toNamed(Routes.absence_success);
       }
       loading(false);
     }catch(e){
