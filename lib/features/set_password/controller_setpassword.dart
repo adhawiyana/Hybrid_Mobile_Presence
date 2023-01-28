@@ -10,11 +10,13 @@ class ControllerSetpassword extends GetxController{
 
   final formkeySetpass = GlobalKey<FormState>();
 
-  var edtcurrPassword = TextEditingController();
-  var edtNewPassword = TextEditingController();
+  var edtNewPass = TextEditingController();
+  var edtConfirmPass = TextEditingController();
 
   var showPass = true.obs;
   var showConfirmPass = true.obs;
+
+  var loading = false.obs;
 
   ControllerGlobalUser controllerGlobalUser = Get.find<ControllerGlobalUser>();
 
@@ -26,15 +28,33 @@ class ControllerSetpassword extends GetxController{
   @override
   void onClose() {
     super.onClose();
-    edtcurrPassword.dispose();
-    edtNewPassword.dispose();
+    edtNewPass.dispose();
+    edtConfirmPass.dispose();
   }
 
   validator()async{
     if(formkeySetpass.currentState!.validate()){
-      log('Success!');
+      newPass();
     }else{
       log('Please check input data');
+    }
+  }
+
+  newPass()async{
+    try{
+      loading(true);
+      var newPassResponse = await api.setPassword(
+          id_user: controllerGlobalUser.user.value.idUser ?? 0,
+          newPass: edtNewPass.text,
+          confirmPass: edtConfirmPass.text
+      );
+      if(newPassResponse != null){
+        log("Success");
+      }
+      loading(false);
+    }catch(e){
+      loading(false);
+      log(e.toString());
     }
   }
 }

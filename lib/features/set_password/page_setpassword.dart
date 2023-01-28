@@ -49,24 +49,24 @@ class PageSetpassword extends GetView<ControllerSetpassword>{
                   padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
                   child: TextFormField(
                     obscureText: controller.showPass.value,
-                    controller: controller.edtcurrPassword,
+                    controller: controller.edtNewPass,
                     decoration: InputDecoration(
-                      hintText: 'Current Password',
+                      hintText: 'New Password',
                       suffixIcon: IconButton(
                           onPressed: ()=> controller.showPass.value == true
                               ? controller.showPass.value = false
                               : controller.showPass.value = true,
-                          icon: Icon(CupertinoIcons.eye_fill)),
+                          icon: const Icon(CupertinoIcons.eye_fill)),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Color(0xff5C94E8),
                           width: 1,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                               color: Color(0xff5C94E8),
                               width: 1
                           )
@@ -76,6 +76,7 @@ class PageSetpassword extends GetView<ControllerSetpassword>{
                       value!.isEmpty || value.length < 8
                           ? Fluttertoast.showToast(msg: 'Current password still empty')
                           : null;
+                      return null;
                     },
                   ),
                 ),
@@ -83,24 +84,24 @@ class PageSetpassword extends GetView<ControllerSetpassword>{
                   padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
                   child: TextFormField(
                     obscureText: controller.showConfirmPass.value,
-                    controller: controller.edtNewPassword,
+                    controller: controller.edtConfirmPass,
                     decoration: InputDecoration(
-                      hintText: 'New Password',
+                      hintText: 'Confirm Password',
                       suffixIcon: IconButton(
                           onPressed: ()=> controller.showConfirmPass.value == true
                               ? controller.showConfirmPass.value = false
                               : controller.showConfirmPass.value = true,
-                          icon: Icon(CupertinoIcons.eye_fill)),
+                          icon: const Icon(CupertinoIcons.eye_fill)),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Color(0xff5C94E8),
                           width: 1,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                               color: Color(0xff5C94E8),
                               width: 1
                           )
@@ -110,6 +111,7 @@ class PageSetpassword extends GetView<ControllerSetpassword>{
                       value!.isEmpty || value.length < 8
                           ? Fluttertoast.showToast(msg: 'New password still empty')
                           : null;
+                      return null;
                     },
                   ),
                 ),
