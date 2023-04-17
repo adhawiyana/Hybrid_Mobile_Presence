@@ -60,7 +60,7 @@ class PageAbsence extends GetView<ControllerAbsence> {
                             const SizedBox(height: 11),
                             Image.asset(
                               "assets/icons/home_icon.png",
-                              height: 180,
+                              height: 175,
                               width: Get.width,
                             )
                           ],
@@ -68,7 +68,7 @@ class PageAbsence extends GetView<ControllerAbsence> {
                       ),
                       controller.currPost.value.isNotEmpty || controller.currPost.value != ""
                           ? Padding(
-                              padding: const EdgeInsets.only(top: 275),
+                              padding: const EdgeInsets.only(top: 270, bottom: 20),
                               child: SizedBox(
                                 height: 450,
                                 width: Get.width,
@@ -259,7 +259,7 @@ class PageAbsence extends GetView<ControllerAbsence> {
                               ),
                             )
                           : Padding(
-                              padding: const EdgeInsets.only(top: 275),
+                              padding: const EdgeInsets.only(top: 270, bottom: 20),
                               child: SizedBox(
                                 height: 450,
                                 width: Get.width,

@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:tester_app/features/set_password/api_setpassword.dart';
 import 'package:tester_app/shared/controller/controller_global_user.dart';
@@ -34,7 +35,13 @@ class ControllerSetpassword extends GetxController{
 
   validator()async{
     if(formkeySetpass.currentState!.validate()){
-      newPass();
+      if(edtNewPass.text.length < 8 && edtConfirmPass.text.length < 8){
+        Fluttertoast.showToast(msg: 'New password still empty');
+      }else if(edtNewPass.text != edtConfirmPass.text){
+        Fluttertoast.showToast(msg: "Your password don't match");
+      }else{
+        newPass();
+      }
     }else{
       log('Please check input data');
     }
@@ -49,7 +56,8 @@ class ControllerSetpassword extends GetxController{
           confirmPass: edtConfirmPass.text
       );
       if(newPassResponse != null){
-        log("Success");
+        Fluttertoast.showToast(msg: 'Password has been changed');
+        Get.back();
       }
       loading(false);
     }catch(e){

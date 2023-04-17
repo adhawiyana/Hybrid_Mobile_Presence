@@ -31,10 +31,10 @@ class PageProfile extends GetView<ControllerProfile>{
                   Stack(
                     children: [
                       CachedNetworkImage(
-                        height: Get.height * 0.47,
+                        height: Get.height * 0.42,
                         width: Get.width,
                         fit: BoxFit.fitWidth,
-                        imageUrl: 'http://192.168.1.12:4500/uploads/${controller.controllerGlobalUser.user.value.picture}',
+                        imageUrl: 'http://192.168.1.13:4500/uploads/${controller.controllerGlobalUser.user.value.picture}',
                         progressIndicatorBuilder: (context, url, downloadProgress) => Shimmer.fromColors(
                             baseColor: Colors.grey[300]!,
                             highlightColor: Colors.grey[100]!,
@@ -47,13 +47,13 @@ class PageProfile extends GetView<ControllerProfile>{
                           height: 80,
                           decoration: const BoxDecoration(
                               color: Colors.grey,
-                              shape: BoxShape.circle
+                              shape: BoxShape.rectangle
                           ),
                           child: const Icon(CupertinoIcons.person, color: Colors.white, size: 60),
                         ),
                       ),
                       Container(
-                        height: Get.height * 0.47,
+                        height: Get.height * 0.42,
                         width: Get.width,
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
@@ -113,86 +113,88 @@ class PageProfile extends GetView<ControllerProfile>{
                     ],
                   ),
                   const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        height: 95,
-                        width: 175,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8),
-                            boxShadow: [
-                              BoxShadow(
-                                  offset: const Offset(0, 3),
-                                  blurRadius: 10,
-                                  color: Colors.black.withOpacity(0.25)
-                              )
-                            ]
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                                "On-Site",
-                                style: GoogleFonts.nunitoSans(
-                                    color: const Color(0xff6496E6),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          height: Get.height * 0.13,
+                          width: Get.width * 0.43,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8),
+                              boxShadow: [
+                                BoxShadow(
+                                    offset: const Offset(0, 3),
+                                    blurRadius: 10,
+                                    color: Colors.black.withOpacity(0.25)
                                 )
-                            ),
-                            Obx(() => Text(
-                                controller.onsiteData.value.toString(),
-                                style: GoogleFonts.nunitoSans(
-                                    color: const Color(0xff6496E6),
-                                    fontSize: 48,
-                                    fontWeight: FontWeight.bold
-                                )
-                            )),
-                          ],
+                              ]
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                  "On-Site",
+                                  style: GoogleFonts.nunitoSans(
+                                      color: const Color(0xff6496E6),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold
+                                  )
+                              ),
+                              Obx(() => Text(
+                                  controller.onsiteData.value.toString(),
+                                  style: GoogleFonts.nunitoSans(
+                                      color: const Color(0xff6496E6),
+                                      fontSize: 48,
+                                      fontWeight: FontWeight.bold
+                                  )
+                              )),
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 16),
-                      Container(
-                        height: 95,
-                        width: 175,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8),
-                            boxShadow: [
-                              BoxShadow(
-                                  offset: const Offset(0, 3),
-                                  blurRadius: 10,
-                                  color: Colors.black.withOpacity(0.25)
-                              )
-                            ]
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                                "Off-Site",
-                                style: GoogleFonts.nunitoSans(
-                                    color: const Color(0xff6496E6),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold
+                        Container(
+                          height: Get.height * 0.13,
+                          width: Get.width * 0.43,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8),
+                              boxShadow: [
+                                BoxShadow(
+                                    offset: const Offset(0, 3),
+                                    blurRadius: 10,
+                                    color: Colors.black.withOpacity(0.25)
                                 )
-                            ),
-                            Obx(() => Text(
-                                controller.offsiteData.value.toString(),
-                                style: GoogleFonts.nunitoSans(
-                                    color: const Color(0xff6496E6),
-                                    fontSize: 48,
-                                    fontWeight: FontWeight.bold
-                                )
-                            )),
-                          ],
+                              ]
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                  "Off-Site",
+                                  style: GoogleFonts.nunitoSans(
+                                      color: const Color(0xff6496E6),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold
+                                  )
+                              ),
+                              Obx(() => Text(
+                                  controller.offsiteData.value.toString(),
+                                  style: GoogleFonts.nunitoSans(
+                                      color: const Color(0xff6496E6),
+                                      fontSize: 48,
+                                      fontWeight: FontWeight.bold
+                                  )
+                              )),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Container(
-                    margin: const EdgeInsets.fromLTRB(16, 20, 16, 0),
+                    margin: const EdgeInsets.fromLTRB(16, 20, 16, 20),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(8),

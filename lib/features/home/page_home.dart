@@ -64,14 +64,14 @@ class PageHome extends GetView<ControllerHome>{
                         const SizedBox(height: 11),
                         Image.asset(
                           "assets/icons/desk_icon.png",
-                          height: 200,
+                          height: 175,
                           width: Get.width,
                         )
                       ],
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 280),
+                    padding: const EdgeInsets.only(top: 255),
                     child: Column(
                       children: <Widget>[
                         SizedBox(
@@ -163,7 +163,6 @@ class PageHome extends GetView<ControllerHome>{
                         ),
                         const SizedBox(height: 20),
                         SizedBox(
-                          height: 250,
                           width: Get.width,
                           child: Card(
                             elevation: 5,

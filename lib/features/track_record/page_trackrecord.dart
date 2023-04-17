@@ -46,7 +46,7 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                             onTap: () => controller.selectedDateOne(context),
                             child: Container(
                               height: 40,
-                              width: Get.width * 0.4,
+                              width: Get.width * 0.37,
                               margin: const EdgeInsets.only(top: 20),
                               decoration: BoxDecoration(
                                   color: Colors.transparent,
@@ -69,19 +69,20 @@ class PageTrackrecord extends GetView<ControllerTrackrecord> {
                                       color: Colors.black54, width: 1),
                                   borderRadius: BorderRadius.circular(10)),
                               height: 40,
-                              width: Get.width * 0.4,
+                              width: Get.width * 0.37,
                               alignment: Alignment.center,
                               child: Text(DateFormat('yyyy-MM-dd')
                                   .format(controller.date_two.value)),
                             ),
                           ),
+                          Spacer(),
                           GestureDetector(
                             onTap: () {
                               controller.trackRecord();
                               // Get.toNamed(Routes.detail_track_record);
                             },
                             child: Container(
-                              margin: const EdgeInsets.only(top: 20, left: 3),
+                              margin: const EdgeInsets.only(top: 20, left: 3, right: 15),
                               decoration: BoxDecoration(
                                   color: const Color(0xff5C94E8),
                                   borderRadius: BorderRadius.circular(10)),
