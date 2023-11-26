@@ -70,6 +70,7 @@ class _AppViewState extends State<AppView> with WidgetsBindingObserver {
         builder: (context, child)=> GetMaterialApp(
           navigatorKey: Get.key,
           title: 'Tester',
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             platform: TargetPlatform.android,
             brightness: Brightness.light,
